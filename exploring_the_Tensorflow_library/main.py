@@ -47,3 +47,4 @@ print("one hot = \n{}".format(str(one_hot)))
 
 # ones
 print("ones = \n{}".format(str(ones([3,3]))))
+
