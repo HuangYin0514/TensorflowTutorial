@@ -60,5 +60,17 @@ if __name__ == '__main__':
         cost = compute_cost(Z3, Y)
         print("cost = {}".format(str(cost)))
 
-    parameters = model(X_train, Y_train, X_test, Y_test,num_epochs=100)
+    parameters = model(X_train, Y_train, X_test, Y_test, num_epochs=2)
 
+    import scipy
+    from PIL import Image
+    from scipy import ndimage
+
+    my_image = "1.png"
+    fname = "datasets/fingers/" + my_image
+    image = np.array(ndimage.imread(fname, flatten=False))
+    my_image = scipy.misc.imresize(image, size=(64, 64, 3)).reshape((1, 64 * 64 * 3)).T
+    my_image_prediction = predict(my_image, parameters)
+    plt.imshow(image)
+    plt.show()
+    print("Your algorithm predicts: y = " + str(np.squeeze(my_image_prediction)))
